@@ -146,13 +146,22 @@ include "sidebar.php";
               <h6 class='text-white modal-title'><strong> $<?= number_format((float)totalBalance($UserDetails->id)) ?></strong></h6>
             </div>
           </div>
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-7">
               <h5>BTC Worth:</h5>
             </div>
             <div class="col-5 text-right">
               <h6 class='text-white modal-title'><strong>
                   <span class="badge badge-danger" id="balancebtc"></span></strong></h6>
+            </div>
+          </div> -->
+          <div class="row">
+            <div class="col-7">
+              <h5>Trade portfolio</h5>
+            </div>
+            <div class="col-5 text-right">
+              <!-- <h6 class='text-white modal-title'><strong>
+                  <span class="badge badge-danger" id="balancebtc"></span></strong></h6> -->
             </div>
           </div>
         </div>
