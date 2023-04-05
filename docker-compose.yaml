@@ -1,0 +1,6 @@
+services:
+  dashboard:
+    image: bnbinvest-dashboard:latest
+    restart: always
+    ports:
+      - "8001:80"
