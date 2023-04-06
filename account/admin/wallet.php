@@ -1,26 +1,53 @@
 <?php
 
+session_start();
 include "../../core/config.php";
 if (!isLogged()) {
     header("location: ../../login.php");
     exit;
 }
 $mErr = "";
+
+if ($_SESSION["mErr"] != NULL) {
+    $mErr = $_SESSION["mErr"];
+}
+session_unset();
+
+function checkAndDeactivateSession()
+{
+    if ($_SESSION["mErr"] != NULL) {
+        session_unset();
+    }
+}
+
 if (isset($_POST['add'])) {
+    checkAndDeactivateSession();
     $wallet = $_POST['wallet'];
     $wallet_type = $_POST['wallet_type'];
     // $add = $royaldb->query("INSERT INTO user SET $wallet_type='$wallet'") or die($royaldb->error);
-    $add = $royaldb->query("UPDATE user SET $wallet_type='$wallet' WHERE id='1'") or die($royaldb->error);
-    $mErr = '<div class="alert-box alert-primary">
+    // $add = $royaldb->query("UPDATE user SET $wallet_type='$wallet' WHERE id='1'") or die($royaldb->error);
+    // $mErr = '<div class="alert-box alert-primary">
+    //                         <div class="alert-txt"><em class="ti ti-ok"></em>Wallet Added Successfully!</div>
+    //                     </div>';
+    $users = $royaldb->query("SELECT id FROM user") or die($royaldb->error);
+    if ($users->num_rows > 0) {
+        while ($loadw = $users->fetch_object()) {
+            $add = $royaldb->query("UPDATE user SET $wallet_type='$wallet' WHERE id='$loadw->id'") or die($royaldb->error);
+        }
+        $_SESSION["mErr"]  = '<div class="alert-box alert-primary">
                             <div class="alert-txt"><em class="ti ti-ok"></em>Wallet Added Successfully!</div>
                         </div>';
+    }
+    header("location: ./wallet.php");
 }
 if (isset($_GET['del'])) {
     $where = $_GET['del'];
     $del = $royaldb->query("UPDATE user SET $where=NULL") or die($royaldb->error);
-    $mErr = '<div class="alert-box alert-danger">
-                            <div class="alert-txt"><em class="ti ti-alert"></em>Wallet Deleted Successfully!</div>
+
+    $_SESSION["mErr"] = '<div class="alert-box alert-primary">
+                            <div class="alert-txt"><em class="ti ti-ok"></em>Wallet Deleted Successfully!</div>
                         </div>';
+    header("location: ./wallet.php");
 }
 
 // $getw = $royaldb->query("SELECT * FROM wallet WHERE id > 0 ORDER BY id DESC") or die($royaldb->error);
@@ -71,7 +98,6 @@ if ($getw->num_rows > 0) {
         }
     }
 }
-
 
 ?>
 
@@ -134,8 +160,8 @@ if ($getw->num_rows > 0) {
                                     <div class="tile-bubbles"></div>
                                     <h6 class="tile-title">Total Profit</h6>
                                     <h1 class="tile-info" style="color:#4d54f6;">
-                                    $<?= totalAdminBalanceh() ?>
-                                </h1>
+                                        $<?= totalAdminBalanceh() ?>
+                                    </h1>
                                 </div>
                             </div>
                         </div>
@@ -176,7 +202,7 @@ if ($getw->num_rows > 0) {
                                         <label for="txtAmount"><strong>Add Wallet</strong></label>
                                         <div class="payment-input">
                                             <input class="input-bordered" type="text" name="wallet">
-                                            <span class="payment-from-cur payment-cal-cur">BTC WALLET</span>
+                                            <span class="payment-from-cur payment-cal-cur">WALLET ADDRESS</span>
                                         </div>
                                     </div>
                                 </div><!-- .col -->
@@ -205,7 +231,7 @@ if ($getw->num_rows > 0) {
                                         </thead>
                                         <tbody>
                                             <!-- <tr> -->
-                                                <?= $getwi ?>
+                                            <?= $getwi ?>
                                             <!-- </tr> -->
                                         </tbody>
 

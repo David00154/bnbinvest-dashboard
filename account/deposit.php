@@ -362,6 +362,120 @@ include "sidebar.php";
 
 
       <?php } ?>
+      <?php if ($UserDetails->eth_wallet != NULL) { ?>
+        <div class="col-md-3">
+          <!-- Box Comment -->
+          <div class="box box-widget">
+            <!-- /.box-header -->
+            <div class="box-body">
+              <img class="img-fluid pad" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK0AAABzCAMAAADdRXIuAAAAaVBMVEX///+MjIw0NDQUFBQ5OTk8PDuQkJAqKiotLS1lZWUAAAA2NjVoaGiGhoaJiYkwMDDt7e35+fm+vr6amprn5+cbGxt+fn64uLiioqLd3d1cXFwjIyPMzMxzc3MKCgrS0tJOTk5ERESvr6+EeKIDAAADnElEQVR4nO2aWZOrIBBGI6K4BHGPStTo//+R1wUFs3qf6KnivMxS83CG6q+BJpeLwWAwGAwGg8FgMBhOkeoW+B/q5i/pZs2gW+E8aeQHlW6Js8Su6xMn161xkoq6vsdb3RrnqKk12SL7rlvkDEkWLbZek+hWOUFKrcUW2Zluld/EliVsEYIftJHutvCDVpfK2nbAgzZHTNqyB+ygzRGTtqgAHbRkqQNpi7pYt9IXqujJlgAOWr/WgWKLCrBBS9zoxZY5uq0+kW5Lq9giDjRo8S6r2iIOc0fbIvZkS3zdYu/o5dIebBGHeEeTK/tky4hutVdu9JMtwKDF6tI+2SICLWjZV9tGt94RNWKvtqgAFbTEtY6216MtcyAdHW9PSxs1R1vELd2KkvxYtJHvcJuj8FC6tW7JHSVirls2BGFi23ahri956Jbc6EvF9YERxovt0bcDErQ9Yq7VDl6I8W47QfagDTCuEaO4i1HfQaurYmvbnImgUd2iM3kp2oDD8I5ia2+BsyEEbToozuXKQow/2IoChjAY66nrtg+EMP5iu/raN92yU8SuAwkx/mE7+RKGdAetagb04vrWdvLtSs22Wee9un6wDQJXs+0lLjk6ZdsFre5CmEkH/rtuuwAB2cwuVUh+2AYFiBeptYXmpce+2AZBmyt/rY97L742RfjBtgseYhh2G/WJrlSZyM744G9tg1AUQd5c9WkK4ojetu869mIbBKX4b1zmAbj61iWlohzq1kYH2y7wxVHm5nkwhqPTiZFWYtluA1FsAySWvfY97IE4MS4vIxEdE/FD4QnbaesSv6NF6GAoLyb5fByn1l10s5Ygh8xbl+haI2aO43AIp9uFdcxMM1EOKeY8KEQR9A13ZllAs7B1dBuVlch/NQi5vJ2KYIJBei3ZZnbUEoeB3dqbXR2MATQvSb0Na6jb779Mp/1ikXWgDZzHTTeiohxy3wtXVwdI85Ikcl4TRXPAXMaEK5zmJVFedKbyHZnn7BRgmpckVV9JGiRlCYij7TPqC9Q13GWZ/pPXO+K3tlj7tfwDcpyv2HLtI49P7G1M2hJozUsiZ6ObLX4ArYOZvHyy7QA2L8n2uRphC7N5SdY2JmyRD24TO5JQaYsZ4KJdudPdlmgfH/xmbmOLLeDmJYnnT7ReQ9jNSzK1sdkWxKPICVI62RJA18avJJl7hfCAc5I48vmfKNqVvvkDzUsC7I5rMBgMBoPBYDAYDHD5B/0uNYzOEqnFAAAAAElFTkSuQmCC" alt="Eth">
+
+              <button type="button" class="btn btn-default btn-block btn-lg bg-blue-active" data-toggle="modal" data-target="#eth"><i class="fa fa-share"></i> Choose This</button>
+              <!-- Modal -->
+              <div class="modal fade text-left" id="eth" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="myModalLabel1">Deposit</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body mx-auto">
+                      <h5 class="text-center mt-20">Transfer eth (Eth) address</h5><br>
+                      <p>Once we confirm your payment, your account will be funded instantly. Please note that there is a minimum deposit of 300 USD.</p>
+
+                      <!-- <center>
+            <p class="mb-20">
+              <img src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=pi:<?= $wallet ?>" />
+            </p>
+          </center> -->
+
+                      <div class="input-group mb-20">
+                        <input id="myInput" type="text" class="form-control text-center" readonly="readonly" value="<?= $UserDetails->eth_wallet ?>">
+                        <span style="display: inline;" class="input-group-btn">
+                          <button onclick="this.innerHTML='Copied'; this.classList.remove('btn-success');this.classList.add('btn-warning');" class="btn btn-success" type="button" id="copy-button" data-toggle="tooltip" data-placement="button" data-clipboard-target="#myInput" title="Copy to Clipboard">Copy</button>
+                        </span>
+                      </div>
+
+                      <center>
+                        <a href="pi:<?= $wallet ?>" class="btn btn-success btn-lg mb-20" style="font-size: 20px; font-weight: bold;">Pay Using Eth Wallet App</a>
+                      </center>
+                      <!-- <p class="lead mb-20">If you don't know how to buy bitcoin <a href="https://www.buybitcoinworldwide.com" target="_blank" class="text-success">Click Here</a></p> -->
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn grey btn-outline-secondary pull-right" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- Col -->
+
+
+      <?php } ?>
+      <?php if ($UserDetails->xrp_wallet != NULL) { ?>
+        <div class="col-md-3">
+          <!-- Box Comment -->
+          <div class="box box-widget">
+            <!-- /.box-header -->
+            <div class="box-body">
+              <img class="img-fluid pad" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALMAAAB/CAMAAACT4AMOAAAAe1BMVEX///8jKC8AAADW1tfP0NEAAAwgJS34+PgSGSIyNjwdIyrf4OAcISlLTlPl5ubu7u9AQ0gpLjVQU1dFSE4AABEKEhzExMYADBdtb3MXHSa6u7wABhV0dnk7PkSEhoh6fH8QFBoDCxJdXWCSk5UXGh6io6NlZWeam56ur7EOnSd9AAAEvElEQVR4nO2Z3WKiMBBGIQSIgPgHAiKya7vI+z/hJhPbCiSjuNztnEs16eEjTCbUcQiCIAiCIAiCIAiCIAiCIAiCIAiCIAhiRPyLKZr0ye/CLfzuN3/8kOsPRzTtcWOdh5tGMLa9IGMmpKJyXTe/4kPCcy1/lbB48OFKuAaS3D982CbyfNMQOSY7fIQvS28akF5j0uG+UBOvBsoOz41/XxIVn6dZzmpMnlnGGLgn3dkv05iydIaYg2hIoIPL/iDOkXFMVFhvz1R6BdJ7W9LhVafsjT7Xzs12yKrQ8TOjADhH6xGNKEA7u7wsHVeJHFBYkg7PGaQ8VgbnYMXTIfGx9SuQPtqc2WZEyj98CGDG8oh3iTXpe8q7ifLdOZ4O2VyVQLQyFCPtbAhnU6o/E3y+Xj48AUmX08nC1jenjDg7IQhktxnO8naqMfnrS/or6UnJCzs1U+QalBFnx9nK5RHUc5xlcZIKSTOjTt+THq1pnXJkShl3PqkHMeOTzxFn58jUd9MxiLQLSXeP16nvV+Sa58GcN+vIdcV0cWDO4U6OsdRIC1zIIa7/sKbDC4OULZeOOTudTEBMSxfm7JRywryd4+x4iUpaNFxPGXpbdYOjxFSznjqX1Xzndr6z3Iwj2MK624mf/pS1uoTAvsAWz7mT15m/vq3cZ4TNxa1yUYkcNoaksqWMO6dbefn5dG1izhshN0O/n+nscHfY9+QF8hg/rxvTcoM59+o731iiUDZl9dNgClFifTXiHKobFrnTLxDntJG3JnnSFJs5lj6Ta6PKGSvx3R/L+SI7QWa4zcg+uFdhFbNK3Q+b06Xsysvp2RWjz2BbJ6b2xeYc8q1Srpr5urPQzsf4m/TR5WosOJ5es7E3gPelr57+SMzZBd91dt3dA6vy5wlKjQsLnIPdiCiHqZL89Vb0n5yDRwRDn9qvc0owQj/yVfK2chjfyvVh3d28J4dKbjrC5o1lgT86mxD5Hh2JGfdrVldJlIiarXvUepzz/W+j3aR2TkZUue93b4ec7vX+p29WvscqvHZefbFLBGgLw8lh6JwcRlzbPn39TcGIU1ENbljFkKvXdeN7/Yb8EsBV+Eibo2vdu3pG5V+qSQqEUGsDUgty+/4/rc/xFbZ+ZGNAe6S3lH8HsGO3vSygpzYR0NdZkzbtKWeQtjc6SzsfP5Vyfv2ySCG1wFo0Tc4hjIkq296wsPOpVsr+Y/96Y1jSxr07hD14/Jrsm2Wd+aday0U7mO+Swfo2S5v7jXgFp52t2WtR52M2SVnxgSRt6ZE8OO1Y3v8t6czhLFicJ7PdkzadVmx9Xa+Lh/GQtKCzTjkzFdZ70gZpay/aMygehtdICzrfUzZvYC0kbTgX2vvntrbdnMWceaZWYHa2fG1LGun54V1OYHj9tJQzD1TKtb1NKCHpZFxzEedNAxVvO2mXFnLmPpqy4gKd+vjggb8rgIq3Gtst46zf09XIvyYkHSQdDKXR86DHYFMdP9WLOHsseZay4qLfjw7/1VZXldjZGvWjkIf3io0m9pj68N+ceQb/n7s+neUKv/MfH0Rvvd/vr9bDRX+QX++b4aPrbdVnC/Z1BEEQBEEQBEEQBEEQBEEQBEEQBEEQxP/AX8b7SBZKGjRkAAAAAElFTkSuQmCC" alt="Xrp">
+
+              <button type="button" class="btn btn-default btn-block btn-lg bg-blue-active" data-toggle="modal" data-target="#xrp"><i class="fa fa-share"></i> Choose This</button>
+              <!-- Modal -->
+              <div class="modal fade text-left" id="xrp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="myModalLabel1">Deposit</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body mx-auto">
+                      <h5 class="text-center mt-20">Transfer xrp (Xrp) address</h5><br>
+                      <p>Once we confirm your payment, your account will be funded instantly. Please note that there is a minimum deposit of 300 USD.</p>
+
+                      <!-- <center>
+            <p class="mb-20">
+              <img src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=pi:<?= $wallet ?>" />
+            </p>
+          </center> -->
+
+                      <div class="input-group mb-20">
+                        <input id="myInput" type="text" class="form-control text-center" readonly="readonly" value="<?= $UserDetails->xrp_wallet ?>">
+                        <span style="display: inline;" class="input-group-btn">
+                          <button onclick="this.innerHTML='Copied'; this.classList.remove('btn-success');this.classList.add('btn-warning');" class="btn btn-success" type="button" id="copy-button" data-toggle="tooltip" data-placement="button" data-clipboard-target="#myInput" title="Copy to Clipboard">Copy</button>
+                        </span>
+                      </div>
+
+                      <center>
+                        <a href="pi:<?= $wallet ?>" class="btn btn-success btn-lg mb-20" style="font-size: 20px; font-weight: bold;">Pay Using Xrp Wallet App</a>
+                      </center>
+                      <!-- <p class="lead mb-20">If you don't know how to buy bitcoin <a href="https://www.buybitcoinworldwide.com" target="_blank" class="text-success">Click Here</a></p> -->
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn grey btn-outline-secondary pull-right" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- Col -->
+
+
+      <?php } ?>
 
       <?php if ($UserDetails->usdt_wallet != NULL) { ?>
         <div class="col-md-3">

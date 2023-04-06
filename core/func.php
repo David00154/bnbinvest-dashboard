@@ -178,12 +178,12 @@ function sendMail($subject, $msg, $email)
     $mail->isSMTP();
     $mail->SMTPDebug = 0;
     $mail->Debugoutput = 'html';
-    $mail->Host = "bnbinvest.space";
+    $mail->Host = "smtp.bnbinvest.space";
     $mail->Port = 26;
     $mail->SMTPAuth = true;
     $mail->SMTPSecure = "tls";
     $mail->Username = "admin@bnbinvest.space";
-    $mail->Password = 'urBO2lsy29aa';
+    $mail->Password = '*xc7lkU?3P~h';
     $mail->setFrom('admin@bnbinvest.space', 'BnbInvest Fx');
     $mail->setFromName = 'BnbInvest Fx';
     $mail->addReplyTo("admin@bnbinvest.space");

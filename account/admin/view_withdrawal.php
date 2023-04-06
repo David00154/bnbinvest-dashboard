@@ -14,8 +14,8 @@ if (isset($_POST['deposit'])) {
     $amount = getWith($depo, "amount");
 
     $updateDepo = $royaldb->query("UPDATE withdrawal SET status=1 WHERE id=$depo");
-    $usr = new Royaltechinc\Mailer;
-    $usr->mailUserWithdrawal(getUser(getWith($depo, "user_id"), "email"), getUser(getWith($depo, "user_id"), "full_name"), $amount, getWith($depo, "method"));
+    // $usr = new Royaltechinc\Mailer;
+    // $usr->mailUserWithdrawal(getUser(getWith($depo, "user_id"), "email"), getUser(getWith($depo, "user_id"), "full_name"), $amount, getWith($depo, "method"));
     $_SESSION["alert"] = '<div class="alert-box alert-primary">
                             <div class="alert-txt"><em class="ti ti-ok"></em>Deposit Successful!</div>
                         </div>';

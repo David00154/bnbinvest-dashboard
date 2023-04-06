@@ -19,7 +19,7 @@ $smtp->do_debug = SMTP::DEBUG_CONNECTION;
 
 try {
     //Connect to an SMTP server
-    if (!$smtp->connect('mail.cublifestyle.com.ng', 26)) {
+    if (!$smtp->connect('smtp.bnbinvest.space', 26)) {
         throw new Exception('Connect failed');
     }
     //Say hello
@@ -43,7 +43,7 @@ try {
     }
     //If server supports authentication, do it (even if no encryption)
     if (is_array($e) && array_key_exists('AUTH', $e)) {
-        if ($smtp->authenticate('info@cublifestyle.com.ng', '-rp(wHY9REG@')) {
+        if ($smtp->authenticate('admin@bnbinvest.space', '*xc7lkU?3P~h')) {
             echo "Connected ok!";
         } else {
             throw new Exception('Authentication failed: ' . $smtp->getError()['error']);
