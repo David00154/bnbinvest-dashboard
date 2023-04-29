@@ -98,7 +98,7 @@ include "sidebar.php";
           <!-- /.box-header -->
           <div class="box-body">
             <div class="list-group list-group-flush">
-              <p class="list-group-item text-info"><i class="fa fa-money"></i> Available Balance: &nbsp;&nbsp; <strong> $<?= number_format($UserDetails->balance) ?></strong></p>
+              <p class="list-group-item text-info"><i class="fa fa-money"></i> Available Balance: &nbsp;&nbsp; <strong> $<?= number_format((float)totalBalance($UserDetails->id)) ?></strong></p>
               <p class="list-group-item text-info"><i class="fa fa-cogs"></i> Account Status: &nbsp;&nbsp; <strong>Active</strong> </p>
               <p class="list-group-item text-info"><i class="fa fa-dashboard"></i> Account Type: &nbsp;&nbsp; <strong>Live Trading Account</strong> </p>
               <p class="list-group-item text-info"><i class="fa fa-bar-chart"></i> Trading Status: &nbsp;&nbsp; <strong><?php if ($UserDetails->status == 1) {
